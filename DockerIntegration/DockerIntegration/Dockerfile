@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["DockerIntegration/DockerIntegration/DockerIntegration.csproj", "DockerIntegration/DockerIntegration/"]
+COPY ["DockerIntegration/DockerIntegration/DockerIntegration.csproj", "DockerIntegration/"]
 RUN dotnet restore "DockerIntegration/DockerIntegration.csproj"
 COPY . .
-WORKDIR "/src/DockerIntegration/DockerIntegration"
+WORKDIR "/src/DockerIntegration"
 RUN dotnet build "DockerIntegration.csproj" -c Release -o /app/build
 
 FROM build AS publish
